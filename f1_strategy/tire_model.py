@@ -29,7 +29,7 @@ class TireModel:
         self.compound = compound
         self.age = age
 
-    # Extra seconds vs a fresh soft tire. Raises RuntimeError if worn out.
+    # How many extra seconds/lap. Raises RuntimeError if worn out.
     def lap_time_delta(self) -> float:
         if self.is_worn_out():
             raise RuntimeError(

@@ -16,6 +16,7 @@ class StrategyReporter:
     def __init__(self, total_laps: int, pit_strategy: PitStrategy) -> None:
         if total_laps < 1:
             raise ValueError(f"total_laps must be >= 1 (got {total_laps}).")
+        # Added after Code Review
         if type(total_laps) != int:
             raise TypeError(f"total_laps must be an int (got {type(total_laps)}).")
         self.total_laps = total_laps
@@ -32,7 +33,7 @@ class StrategyReporter:
 
         for lap in range(1, self.total_laps + 1):
             pit_this_lap = self.pit_strategy.is_pit_lap(lap)
-
+            # Added after code review
             if tire.is_worn_out():
                 import sys
                 print(

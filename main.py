@@ -6,10 +6,10 @@ from f1_strategy.strategy_reporter import StrategyReporter
 
 def main() -> None:
     strategy = PitStrategy(pit_plan={
-        18: "medium",
-        38: "soft",
+        5: "medium",
+        15: "soft",
     })
-    reporter = StrategyReporter(total_laps=57, pit_strategy=strategy)
+    reporter = StrategyReporter(total_laps=25, pit_strategy=strategy)
     records = reporter.run()
     reporter.print_report(records)
 
