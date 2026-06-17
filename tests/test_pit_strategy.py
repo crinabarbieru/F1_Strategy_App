@@ -22,7 +22,8 @@ def test_is_pit_lap_true():
 
 def test_is_pit_lap_false():
     strategy = PitStrategy({10: "medium"})
-    assert strategy.is_pit_lap(5) is False
+    for i in range(1,10):
+        assert strategy.is_pit_lap(i) is False
 
 # Update compound type and tire age after pit stop
 def test_apply_stop_returns_new_tire_and_time_loss():

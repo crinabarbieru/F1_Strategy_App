@@ -42,13 +42,15 @@ class StrategyReporter:
                 )
                 tire = TireModel("medium")
                 pit_this_lap = True
-
+            # Delta time: how many seconds slower for this lap compared to base lap
             delta = tire.lap_time_delta()
             lap_time = BASE_LAP_TIME + delta
             if pit_this_lap:
                 lap_time += PIT_STOP_TIME_LOSS
-
+            # Cumulative time = total time until current lap
             cumulative += lap_time
+
+            # Report generation
             records.append({
                 "lap": lap,
                 "compound": tire.compound,
@@ -58,6 +60,8 @@ class StrategyReporter:
                 "cumulative_time": round(cumulative, 3),
             })
 
+            # If this pit lap has a stop, update tire compound
+            #      Otherwise, advance tire age
             if pit_this_lap and self.pit_strategy.is_pit_lap(lap):
                 tire, _ = self.pit_strategy.apply_stop(lap)
             elif not pit_this_lap:

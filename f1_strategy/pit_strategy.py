@@ -11,7 +11,7 @@ from f1_strategy.tire_model import TireModel
     
 # PitStrategy class
 # Attributes: pit_plan
-# Properties: stops_taken, plan
+# Properties: _stops_taken, _plan
 # Methods: is_pit_lap, apply_stop
 class PitStrategy:
 

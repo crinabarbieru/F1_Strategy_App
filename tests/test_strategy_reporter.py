@@ -4,11 +4,12 @@ import pytest
 from f1_strategy.pit_strategy import PitStrategy
 from f1_strategy.strategy_reporter import StrategyReporter
 
-# Number of laps should be a positive integer
+# Number of laps should be positive 
 def test_zero_laps_raises():
     with pytest.raises(ValueError, match="total_laps"):
         StrategyReporter(0, PitStrategy())
 
+# Number of laps should be an integer 
 def test_nonint_laps_raises():
     with pytest.raises(TypeError, match="total_laps"):
         StrategyReporter(3.5, PitStrategy())

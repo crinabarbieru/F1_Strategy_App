@@ -13,8 +13,8 @@ from f1_strategy.config import MAX_TIRE_AGE
 # IT-01  TireModel + PitStrategy
 # ---------------------------------------------------------------------------
 
+# After apply_stop(), the returned tire has age 0 and the correct compound.
 def test_it01_new_tire_fitted_after_stop():
-    """After apply_stop(), the returned tire has age 0 and the correct compound."""
     strategy = PitStrategy({10: "hard"})
     tire = TireModel("soft", age=10)
     new_tire, _ = strategy.apply_stop(10)
@@ -26,8 +26,8 @@ def test_it01_new_tire_fitted_after_stop():
 # IT-02  PitStrategy + StrategyReporter
 # ---------------------------------------------------------------------------
 
+# A lap with a scheduled stop has a higher lap_time than adjacent laps.
 def test_it02_pit_stop_adds_time_loss():
-    """A lap with a scheduled stop has a higher lap_time than adjacent laps."""
     strategy = PitStrategy({5: "hard"})
     reporter = StrategyReporter(total_laps=7, pit_strategy=strategy)
     records = reporter.run()
@@ -39,11 +39,11 @@ def test_it02_pit_stop_adds_time_loss():
 
 
 # ---------------------------------------------------------------------------
-# IT-03  Full pipeline: TireModel → PitStrategy → StrategyReporter
+# IT-03  Full pipeline: TireModel -> PitStrategy -> StrategyReporter
 # ---------------------------------------------------------------------------
 
+# A two-stop plan results in exactly two entries in stops_taken.
 def test_it03_two_stop_strategy_records_both_stops():
-    """A two-stop plan results in exactly two entries in stops_taken."""
     strategy = PitStrategy({10: "medium", 25: "soft"})
     reporter = StrategyReporter(total_laps=30, pit_strategy=strategy)
     reporter.run()
